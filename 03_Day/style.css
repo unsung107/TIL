@@ -1,0 +1,18 @@
+/* 요소 선택자 (type) */
+h2, h1 {
+    color : greenyellow;
+}
+
+/* ID 선택자 (ID) */
+#description {
+    background-color:silver;
+}
+
+/* Class 선택자 (class) */
+li.list-item {
+    font-size: 20px;
+}
+
+ul li {
+    background-color:royalblue;
+}
