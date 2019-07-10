@@ -1,17 +1,17 @@
-from flask import Flask
+from flask import Flask, render_template
 import datetime 
 import random
 app = Flask(__name__)
 
 @app.route("/") # endpoint
 def hello():
-    return "Hello SSAFY!"
-
+    return render_template('index.html')
 
 
 @app.route("/ssafy")
 def ssafy():
     return 'hello keeeff'
+
 
 @app.route('/dday')
 def dday():
@@ -20,9 +20,11 @@ def dday():
     td = b_day - today
     return f'{td.days}일 남았습니다.'
 
+
 @app.route('/html')
 def html():
     return '<h1>This is html h1 tag</h1>'
+
 
 @app.route('/html_lines')
 def html_lines():
@@ -34,20 +36,17 @@ def html_lines():
     </ul>
 
     '''
-@app.route('/greeting/iu')
-def greeting_IU():
-    return '반갑습니다! IU님!'
-@app.route('/greeting/ziont')
-def greeting_ziont():
-    return '반갑습니다! ziont님!'
+
+
 #variable routing
 @app.route('/greeting/<name>')
 def greeting(name):
-    return f'반갑습니다! {name} 님!'
+    return render_template('greeting.html', html_name=name) #이 네임을 안에있는 html에서 html_name이라는 걸로 쓸수있도록 넘겨줌
+
 
 @app.route('/cube/<int:number>')
 def cube(number):
-    return f'{number}의 3 제곱은 {number ** 3} 입니다.'
+    return render_template('cube.html', html_num=number, html_result=number ** 3)
 
 
 #실습
@@ -60,6 +59,11 @@ def lunch(people):
 
     return str(order)
     
+
+@app.route('/movie')
+def movie():
+    movies = ['스파이더맨파프롬홈' , '어벤져스앤드게임' , '기생충' , '알라딘']
+    return render_template('movie.html', movies=movies)
 
 if __name__ == '__main__': #app.py 가 직접 실행되었을때만 !
 

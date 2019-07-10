@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MOVIE</title>
+</head>
+<body>
+    <h1>영화 목록</h1>
+    <ul>
+        {% for movie in movies %} <!-- 문법은 파이썬과 동일 {# #}안에는 진자안 -> movies를 알아들을수 있다. 주석안에서도 처리되므로 조심해야한다.-->
+            <li>{{ movie }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
