@@ -50,6 +50,47 @@ def ascii_result():
     print(result)
     return render_template('ascii_result.html', result=result)
 
+@app.route('/lotto_input')
+def lotto_input():
+    #사용자가 입력할 수 있는 페이지만 전달
+    return render_template('lotto_input.html')
+
+
+@app.route('/lotto_result')
+def lotto_result():
+    lotto_round = request.args.get('lotto_round')
+    lotto_numbers = request.args.get('numbers').split(' ')
+    url = f'https://dhlottery.co.kr/common.do?method=getLottoNumber&drwNo={lotto_round}'
+    response = requests.get(url)
+    lotto_info = response.json() #json 타입의 파일을 python dictionary 로 parsing 해줘
+    mine = set(lotto_numbers)
+    before = []
+    bonus = str(lotto_info['bnusNo'])
+    for k in lotto_info.keys():
+        if 'drwtNo' in k:
+            before.append(str(lotto_info[k]))
+    goal = set(before)
+
+    result = mine & goal
+    deung = '꽝'
+    
+    if len(result) == 6:
+        deung = '1등'
+    elif len(result) == 5:
+        if bonus in mine:
+            deung = '2등'
+        else : deung = '3등'
+    elif len(result) == 4:
+        deung = '4등'
+    elif len(result) == 3:
+        deung = '5등'
+        
+
+
+    return f'당신은 {deung}입니다'
+
+
+
 
 if __name__ == '__main__': #app.py 가 직접 실행되었을때만 !
     app.run(debug=True)
