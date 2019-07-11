@@ -1,9 +1,11 @@
-inpu = input().replace(' ', '')
-nums = inpu.split(',')
+a = {'a' , 'b' , 'c', 'a'}
 
-# for i in range(len(nums)):
-#     nums[i] = int(nums[i])
+print(a)
 
-print(nums)
-print(type(nums[0]))
+b = list(a)
 
+c = ['a']
+
+print(b)
+
+print(b-c)
