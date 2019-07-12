@@ -84,9 +84,7 @@ def lotto_result():
         deung = '4등'
     elif len(result) == 3:
         deung = '5등'
-        
-
-
+    
     return f'당신은 {deung}입니다'
 
 
