@@ -1,15 +1,54 @@
-class korean:
+#보드를 0으로 초기화
+import math
 
-    nationality = ''
-    
-    def __init__(self, nation):
-        self.nationality = nation
-    
-    def printNationality(self):
-        print(self.nationality)
-        
-i = korean('대한민국')
-you = korean('대한민국')
+for rounds in range(int(input())):
 
-i.printNationality()
-you.printNationality()
+    size = int(input())
+    board = []
+    row = []
+
+    for i in range(size):
+        row.append(0)
+    for i in range(size):
+        board.append(row)
+
+    num = 1
+    curve = 0 # 0<=curve<=2*(n-1)
+    x = -1
+    y = 0
+    
+    for l in range(size):
+        x += 1
+        board[y][x] = num
+        num += 1
+    curve += 1
+    
+    while num <= size **2:
+        if curve % 4 == 1 :
+            for f in range(size-math.ceil(curve / 2)):
+                y += 1
+                board[y][x] = num
+                num += 1
+            curve += 1
+
+        elif curve % 4 == 2 :
+            for f in range(size-math.ceil(curve / 2)):
+                x -= 1
+                board[y][x] = num
+                num += 1
+            curve += 1
+        elif curve % 4 == 3 :
+            for f in range(size-math.ceil(curve / 2)):
+                y -= 1
+                board[y][x] = num
+                num += 1
+            curve += 1
+        elif curve % 4 == 0 :
+            for f in range(size-math.ceil(curve / 2)):
+                x += 1
+                board[y][x] = num
+                num += 1
+            curve += 1
+
+    print(board)
+
