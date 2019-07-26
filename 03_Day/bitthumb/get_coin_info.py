@@ -19,11 +19,9 @@ for i in range(len(names)):
     ps[i] = float(ps[i].replace('원','').replace(',',''))
     bts.append([ns[i],ps[i]])
 
-print(bts)
 with open('coin_info.csv', 'w' , encoding='utf-8', newline='') as f:
     csv_writer = csv.writer(f)
     for bt in bts :
         csv_writer.writerow(bt)
-
 
 
